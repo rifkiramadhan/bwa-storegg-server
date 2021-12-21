@@ -1,0 +1,76 @@
+<table id="example2" class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Jenis Game</th>
+            <th>Item</th>
+            <th>Total Harga</th>
+            <th>Nama Player</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < transaction.length; i++){ %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td class="d-flex">
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        <img width="48px" height="48px"
+                          src="https://bwa-storegg.herokuapp.com/uploads/<%= transaction[i].historyVoucherTopup.thumbnail %>"
+                          alt="thumbnail">
+                      </li>
+                    </ul>
+                    <div class="ml-3">
+                        <%= transaction[i]?.historyVoucherTopup?.gameName %>                                                
+                          <br>
+                        <span class="adge badge-secondary badge-pill"><%= transaction[i]?.historyVoucherTopup?.category %></span>
+                    </div>
+                </td>
+
+                <td>
+                    <%= transaction[i]?.historyVoucherTopup?.coinQuantity %>
+                    <%= transaction[i]?.historyVoucherTopup?.coinName %>
+                </td>
+
+                <td><%= transaction[i].value %></td>
+
+                <td>
+                    <%= transaction[i]?.player?.name %>
+                </td>
+
+                <td>
+                    <% if(transaction[i].status === 'pending') { %>
+                        <span class="badge badge-warning">
+                            <%= transaction[i].status %>
+                        </span>
+                    <% } else if (transaction[i].status === 'success') { %>
+                        <span class="badge badge-success">
+                            <%= transaction[i].status %>                        
+                        </span>
+                    <% } else { %>
+                        <span class="badge badge-danger">
+                            <%= transaction[i].status %>                        
+                        </span>
+                    <% } %>
+                </td>
+
+                <td>
+                    <form style="display: inline-block;" action="/transaction/status/<%= transaction[i]._id %>?status=failed&_method=PUT" method="POST">
+                        <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-times-circle"></i>
+                            Tolak
+                        </button>
+                    </form>
+                    <form style="display: inline-block;" action="/transaction/status/<%= transaction[i]._id %>?status=success&_method=PUT" method="POST">
+                        <button class="btn btn-info btn-sm">
+                            <i class="fas fa-check"></i>
+                            Terima
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

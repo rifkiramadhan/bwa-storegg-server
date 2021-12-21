@@ -1,0 +1,67 @@
+<table id="example2" class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Nama Game</th>
+            <th>Foto Game</th>
+            <th>Kategori</th>
+            <th>Nominal</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < voucher.length; i++){ %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= voucher[i].name %></td>
+                <td>
+                    <img class="img-thumbnail rounded" width="120" src="https://bwa-storegg-pro.herokuapp.com/uploads/<%= voucher[i].thumbnail %>" id="preview">
+                </td>
+                <td><%= voucher[i]?.category?.name ?? '-' %></td>
+                <td>
+                    <% voucher[i].nominals.forEach(nominal => { %>
+                        <span class="badge badge-warning">
+                            <%= nominal.coinName %> <%= nominal.coinQuantity %>
+                        </span>
+                    <% }) %>
+                </td>
+
+                <td>
+                    <% if(voucher[i].status === 'Y') { %>
+                        <span class="badge badge-success">
+                            Aktif
+                        </span>
+                    <% } else { %>
+                        <span class="badge badge-danger">
+                            Tidak Aktif
+                        </span>
+                    <% } %>
+                </td>
+
+                <td>
+                    <form action="/voucher/status/<%= voucher[i]._id %>?_method=PUT" method="POST" style="display: inline-block;">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-folder"></i>
+                            <% if(voucher[i].status === 'Y') { %>
+                                Matikan
+                            <% } else { %>
+                                Hidupkan
+                            <% } %>
+                        </button>
+                    </form>
+                    <a href="/voucher/edit/<%= voucher[i]._id %>" class="btn btn-info btn-sm">
+                        <i class="fas fa-pencil-alt"></i>
+                        Ubah
+                    </a>
+                    <form class="mt-1" style="display: inline-block;" action="/voucher/delete/<%= voucher[i]._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                            Hapus
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+  </table>

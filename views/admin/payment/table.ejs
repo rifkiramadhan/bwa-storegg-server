@@ -1,0 +1,59 @@
+<table id="example2" class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Tipe Pembayaran</th>
+            <th>Banks</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < payment.length; i++){ %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= payment[i].type %></td>
+                <td>
+                    <% payment[i].banks.forEach(bank => { %>
+                        <span class="badge badge-warning">
+                            <%= bank.name %> - <%= bank.nameBank %> - <%= bank.noRekening %>
+                        </span>
+                    <% }) %>
+                </td>
+                <td>
+                    <% if(payment[i].status === 'Y') { %>
+                        <span class="badge badge-success">
+                            Aktif
+                        </span>
+                    <% } else { %>
+                        <span class="badge badge-danger">
+                            Tidak Aktif
+                        </span>
+                    <% } %>
+                </td>
+                <td>
+                    <form action="/payment/status/<%= payment[i]._id %>?_method=PUT" method="POST" style="display: inline-block;">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-folder"></i>
+                          <% if(payment[i].status === 'Y') { %>
+                              Matikan
+                          <% } else { %>
+                              Hidupkan
+                          <% } %>
+                        </button>
+                    </form>
+                    <a href="/payment/edit/<%= payment[i]._id %>" class="btn btn-info btn-sm">
+                        <i class="fas fa-pencil-alt"></i>
+                        Ubah
+                    </a>
+                    <form class="mt-1" action="/payment/delete/<%= payment[i]._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                            Hapus
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+  </table>

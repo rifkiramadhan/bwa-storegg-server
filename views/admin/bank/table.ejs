@@ -1,0 +1,41 @@
+<table id="example2" class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Nama Pemilik</th>
+            <th>Nama Bank</th>
+            <th>Nomor Rekening</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < bank.length; i++){ %>
+            <tr>
+                <td>
+                    <%= i + 1 %>
+                </td>
+                <td>
+                    <%= bank[i].name %>
+                </td>
+                <td>
+                    <%= bank[i].bankName %>
+                </td>
+                <td>
+                    <%= bank[i].noRekening %>
+                </td>
+                <td>
+                    <form action="/bank/delete/<%= bank[i]._id %>?_method=DELETE" method="POST">
+                        <a href="/bank/edit/<%= bank[i]._id %>" class="btn btn-info btn-sm">
+                            <i class="fas fa-pencil-alt"></i>
+                            Ubah
+                        </a>
+                        <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                            Hapus
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+  </table>

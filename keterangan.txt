@@ -1,0 +1,32 @@
+---- Keterangan Latihan 12 (Membuat dokumentasi api dengan postman dan Install cors) ----
+
+1. Cara Installasi
+   - express --view=ejs bwa-storegg-server
+     - Untuk menginstall project express js kita dengan nama bwa-storegg-server
+   - npm i dotenv
+     - Untuk menginstall env
+   - npm i mongoose@5.13.2
+     - Untuk menginstal mongoose dengan versi yang sama pada video tutorial
+   - npm i admin-lte
+     - Untuk menginstal project template admin lte 2
+   - npm i connect-flash
+     - Untuk menginstall flash
+   - npm i express-session
+     - Untuk menginstall express session
+   - npm i multer
+     - Untuk menghandle image menggunakan multer
+   - npm i bcryptjs
+     - Untuk mentranslate enkripsi password pada javascript
+   - npm i jsonwebtoken
+     - Untuk membuat token untuk data json
+   - npm i cors
+     - Untuk menangani CORS pada project frontend
+   - npm i env-cmd
+     - Untuk menangani link mode production dan development
+
+2. Cara Menjalankan
+   - npm run start / npm run dev
+     - Untuk Menjalankan project bwa-storegg-server kita
+
+3. Dokumentas Postman API Store GG
+   - https://documenter.getpostman.com/view/10749611/UVJihZu2

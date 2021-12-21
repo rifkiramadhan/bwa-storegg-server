@@ -1,0 +1,91 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+<%- include ../../partials/sidebar.ejs %>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Bank</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/bank">Bank</a></li>
+              <li class="breadcrumb-item active">Ubah</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Form Tambah Bank "<%= bank.name %>"</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="/bank/edit/<%= bank._id %>?_method=PUT" method="POST">
+                    <div class="card-body">
+                        
+                        <div class="form-group">
+                            <label for="name">Nama Pemilik</label>
+                            <input type="text" name="name" value="<%= bank.name %>" class="form-control" id="name" placeholder="Masukan Nama Pemilik" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="bankName">Nama Bank</label>
+                          <select class="form-control select2" style="width: 100%;" id="bankName"
+                              name="bankName" required>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="noRekening">Nomor Rekening</label>
+                            <input type="number" name="noRekening" value="<%= bank.noRekening %>" class="form-control" id="noRekening" placeholder="Masukan Nomor Rekening" required>
+                        </div>
+                
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<%- include ../../partials/footer.ejs %>
+<%- include ../../partials/js.ejs %>
+
+<script src="/adminlte/plugins/select2/js/select2.full.min.js"></script>
+<script>
+    $('.select2').select2({
+        theme: 'bootstrap4'
+    })
+    fetch('https://raw.githubusercontent.com/mul14/gudang-data/master/bank/bank.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data[20]);
+            let options = `<option selected="selected" disabled>Pilih Bank</option>`
+            data.forEach((bank) => {
+                options += `<option value="${bank.name}">${bank.name} - ${bank.code}</option>`
+            });
+            $("#bankName").html(options);
+        });
+</script>
