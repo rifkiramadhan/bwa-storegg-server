@@ -24,7 +24,8 @@ module.exports = {
 
     detailPage: async (req, res) => {
         try {
-          const voucher = await Voucher.findOne({ _id: req.params.id })
+          const { id } = req.params;
+          const voucher = await Voucher.findOne({ _id: id })
             .populate('user', '_id name phone_number')
             .populate('category')
             .populate('nominals')
