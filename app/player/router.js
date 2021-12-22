@@ -13,6 +13,6 @@ router.get('/history', isLoginPlayer, history);
 router.get('/history/:id/detail', isLoginPlayer, historyDetail);
 router.get('/dashboard', isLoginPlayer, dashboard);
 router.get('/profile', isLoginPlayer, profile);
-router.put('/profile/:id', isLoginPlayer, multer({ dest: os.tmpdir() }).single('image'), editProfile);
+router.put('/profile', isLoginPlayer, multer({ dest: os.tmpdir() }).single('image'), editProfile);
 
 module.exports = router;
