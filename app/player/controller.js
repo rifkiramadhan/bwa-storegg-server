@@ -101,7 +101,7 @@ module.exports = {
                 historyPayment : {
                     name : res_bank._doc.name,
                     type : res_payment._doc.type,
-                    nameBank : res_bank._doc.nameBank,
+                    bankName : res_bank._doc.bankName,
                     noRekening : res_bank._doc.noRekening
                 },
                 name : name,
