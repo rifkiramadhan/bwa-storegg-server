@@ -59,13 +59,7 @@ module.exports = {
 
     checkout : async (req, res) => {
         try {
-            const { 
-                accountUser, 
-                name, 
-                nominal, 
-                voucher, 
-                payment, 
-                bank } = req.body
+            const { accountUser, name, nominal, voucher, payment, bank } = req.body;
 
             const res_voucher = await Voucher.findOne({ _id : voucher })
             .select('name category _id thumbnail user')
@@ -118,9 +112,9 @@ module.exports = {
                 user : res_voucher._doc.user?._id
             }
 
-            const transaction = new Transaction(payload)
+            const transaction = new Transaction(payload);
 
-            await transaction.save()
+            await transaction.save();
 
             res.status(201).json({
                 data : transaction
