@@ -44,7 +44,7 @@
                             <div class="select2-purple">
                                 <select class="form-control select2" multiple="multiple" data-placeholder="Pilih Bank" style="width: 100%;" name="banks" required>
                                   <% banks.forEach(bank => { %>
-                                    <option value="<%= bank._id %>"><%= bank.name %> - <%= bank.nameBank %> - <%= bank.noRekening %></option>
+                                    <option value="<%= bank._id %>"><%= bank.name %> - <%= bank.bankName %> - <%= bank.noRekening %></option>
                                   <% }); %>
                                 </select>
                             </div>
