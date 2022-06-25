@@ -27,6 +27,3 @@
 2. Cara Menjalankan
    - npm run start / npm run dev
      - Untuk Menjalankan project bwa-storegg-server kita
-
-3. Dokumentas Postman API Store GG
-   - https://documenter.getpostman.com/view/10749611/UVJihZu2
