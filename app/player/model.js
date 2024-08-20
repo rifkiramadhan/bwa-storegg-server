@@ -51,7 +51,7 @@ let playerSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Player'
     },
-}, { timestamp: true })
+}, { timestamps: true })
 
 playerSchema.path('email').validate(async function(value) {
     try {

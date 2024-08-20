@@ -14,6 +14,6 @@ let paymentSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Bank'
     }]
-}, { timestamp: true })
+}, { timestamps: true })
 
 module.exports = mongoose.model('Payment', paymentSchema)
